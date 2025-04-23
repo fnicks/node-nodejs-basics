@@ -2,7 +2,7 @@ import { writeFile } from 'fs/promises';
 import { exists } from './utils.js'
 
 const create = async () => {
-    const path = 'fresh.txt';
+    const path = 'src/fs/files/fresh.txt';
     if (await exists(path)) {
         throw new Error('FS operation failed');
     }
