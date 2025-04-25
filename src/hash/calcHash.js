@@ -1,5 +1,6 @@
 import { createReadStream } from 'fs';
 import { createHash } from 'crypto';
+import { getCurrentDir } from '../utils.js';
 
 const calculateHash = async () => {
     const hash = (path) => {
@@ -19,7 +20,7 @@ const calculateHash = async () => {
         });
     };
 
-    const sha = await hash('src/hash/files/fileToCalculateHashFor.txt');
+    const sha = await hash(getCurrentDir(import.meta.url) + '/files/fileToCalculateHashFor.txt');
     console.log(sha);
 };
 

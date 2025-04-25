@@ -1,12 +1,14 @@
 import { createReadStream, createWriteStream } from 'fs';
 import { createGzip } from 'zlib';
 import { pipeline } from 'stream/promises';
+import { getCurrentDir } from '../utils.js';
 
 const compress = async () => {
+    const currentDir = getCurrentDir(import.meta.url)
     await pipeline(
-        createReadStream('src/zip/files/fileToCompress.txt'),
+        createReadStream(currentDir + '/files/fileToCompress.txt'),
         createGzip(),
-        createWriteStream('src/zip/files/archive.gz')
+        createWriteStream(currentDir + '/files/archive.gz')
     );
 };
 

@@ -1,5 +1,6 @@
 import { cpus } from 'os';
 import { Worker } from 'worker_threads';
+import { getCurrentDir } from '../utils.js';
 
 const performCalculations = async () => {
     const cpuCount = cpus().length;
@@ -9,7 +10,7 @@ const performCalculations = async () => {
         const workerData = 10 + i;
 
         const promise = new Promise((resolve) => {
-            const worker = new Worker(('./src/wt/worker.js'), {
+            const worker = new Worker((getCurrentDir(import.meta.url) + '/worker.js'), {
                 workerData
             });
 

@@ -1,8 +1,8 @@
 import { readdir } from 'fs/promises';
-import { exists } from './utils.js';
+import { exists, getCurrentDir } from '../utils.js';
 
 const list = async () => {
-    const folderPath = 'src/fs/files/';
+    const folderPath = getCurrentDir(import.meta.url) + '/files/';
     if (!await exists(folderPath)) {
         throw new Error('FS operation failed');
     }
